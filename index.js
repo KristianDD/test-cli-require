@@ -6,14 +6,12 @@ const fs = require("fs");
 const packageJson = fs.readFileSync(".\\demo\\package.json").toString();
 const nsconfigJson = fs.readFileSync(".\\demo\\nsconfig.json").toString();
 
-
-var start = new Date();
+console.time("cli");
 cli = require(cliPath);
 projectData = cli.projectDataService.getProjectDataFromContent(packageJson, nsconfigJson);
 const appPath = projectData.getAppDirectoryRelativePath();
 const resPath = projectData.getAppResourcesRelativeDirectoryPath();
-var end = new Date() - start;
+console.timeEnd("cli");
 
-console.log(end);
 console.log(appPath);
 console.log(resPath);
